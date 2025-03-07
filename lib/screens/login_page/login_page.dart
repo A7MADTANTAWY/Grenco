@@ -27,14 +27,7 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    "Grenco",
-                    style: TextStyle(
-                      fontSize: 90,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff28CF05),
-                    ),
-                  ),
+                  SizedBox(width: 300, child: Image.asset("assets/grenco.png")),
                   SizedBox(height: 100),
                   TextFormField(
                     keyboardType: TextInputType.emailAddress,
