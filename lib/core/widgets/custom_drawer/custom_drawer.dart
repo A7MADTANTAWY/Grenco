@@ -1,10 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:grenco/core/models/user_model.dart';
 import 'package:grenco/core/widgets/custom_drawer/elements/custom_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  final UserModel user;
+  const CustomDrawer({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +59,7 @@ class CustomDrawer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Ahmed Tantawy",
+                          user.username,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -67,7 +69,7 @@ class CustomDrawer extends StatelessWidget {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          "Hello, Ahmed!",
+                          "Welcome To Grenco",
                           style: TextStyle(
                             color: Colors.white70,
                             fontSize: 14,
@@ -83,7 +85,7 @@ class CustomDrawer extends StatelessWidget {
                 icon: Icons.person_rounded,
                 title: "Profile",
                 onPressed: () {
-                  context.go('/profile');
+                  context.go('/profile', extra: user);
                 },
                 color: Colors.black,
               ),
@@ -91,47 +93,55 @@ class CustomDrawer extends StatelessWidget {
                 icon: Icons.home_rounded,
                 title: "Home",
                 onPressed: () {
-                  context.go('/home');
+                  context.go('/home', extra: user);
                 },
                 color: Colors.black,
               ),
-              CustomTile(
-                icon: Icons.video_collection_rounded,
-                title: "Video",
-                onPressed: () {
-                  context.go('/video');
-                },
-                color: Colors.black,
-              ),
-              CustomTile(
-                icon: Icons.av_timer_sharp,
-                title: "productivity",
-                onPressed: () {
-                  context.go('/productivity');
-                },
-                color: Colors.black,
-              ),
-              CustomTile(
-                icon: Icons.attach_money,
-                title: "Working Hours",
-                onPressed: () {
-                  context.go('/workHours');
-                },
-                color: Colors.black,
-              ),
-              CustomTile(
-                icon: Icons.verified_user_sharp,
-                title: "Add User",
-                onPressed: () {
-                  context.go('/users');
-                },
-                color: Colors.black,
-              ),
+              user.role == "admin"
+                  ? CustomTile(
+                      icon: Icons.video_collection_rounded,
+                      title: "Video",
+                      onPressed: () {
+                        context.go('/video', extra: user);
+                      },
+                      color: Colors.black,
+                    )
+                  : SizedBox(),
+              user.role == "admin"
+                  ? CustomTile(
+                      icon: Icons.av_timer_sharp,
+                      title: "productivity",
+                      onPressed: () {
+                        context.go('/productivity', extra: user);
+                      },
+                      color: Colors.black,
+                    )
+                  : SizedBox(),
+              user.role == "admin"
+                  ? CustomTile(
+                      icon: Icons.attach_money,
+                      title: "Working Hours",
+                      onPressed: () {
+                        context.go('/workHours', extra: user);
+                      },
+                      color: Colors.black,
+                    )
+                  : SizedBox(),
+              user.role == "admin"
+                  ? CustomTile(
+                      icon: Icons.verified_user_sharp,
+                      title: "Add User",
+                      onPressed: () {
+                        context.go('/users', extra: user);
+                      },
+                      color: Colors.black,
+                    )
+                  : SizedBox(),
               CustomTile(
                 icon: Icons.settings_rounded,
                 title: "Settings",
                 onPressed: () {
-                  context.go('/settings');
+                  context.go('/settings', extra: user);
                 },
                 color: Colors.black,
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grenco/core/Auth/auth.dart';
+import 'package:grenco/core/models/user_model.dart';
 import 'package:grenco/core/widgets/custom_button/custom_button.dart';
 import 'package:grenco/core/widgets/custom_text_field/custom_text_field.dart';
 
@@ -14,7 +15,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
-  String? Email, Password;
+  String? email, password;
+  UserModel userModel = UserModel(
+    username: '',
+    email: '',
+    role: '',
+    uid: '',
+  );
 
   bool isLoading = false;
 
@@ -52,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                       iconData: Icons.email,
                       hint: "Your Email",
                       onSave: (value) {
-                        Email = value;
+                        email = value;
                       },
                     ),
                     SizedBox(height: 20),
@@ -61,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                       iconData: Icons.lock,
                       hint: "Your Password",
                       onSave: (value) {
-                        Password = value;
+                        password = value;
                       },
                     ),
                     SizedBox(height: 60),
@@ -73,9 +80,10 @@ class _LoginPageState extends State<LoginPage> {
                             isLoading = true;
                           });
 
-                          final result = await Auth().login(
-                            email: Email!,
-                            password: Password!,
+                          final auth = Auth();
+                          final result = await auth.login(
+                            email: email!,
+                            password: password!,
                             context: context,
                           );
 
@@ -84,11 +92,26 @@ class _LoginPageState extends State<LoginPage> {
                           });
 
                           if (result != null) {
-                            context.go("/home");
+                            // جلب بيانات المستخدم
+                            final userData = await auth.getCurrentUserData();
+                            final uid =
+                                result.user?.uid; // <-- هنا بنجيب الـ uid
+
+                            if (userData != null && uid != null) {
+                              final userModel = UserModel(
+                                uid: uid,
+                                email: userData['email'],
+                                role: userData['role'],
+                                username: userData['username'],
+                              );
+
+                              context.go('/home', extra: userModel);
+                            }
                           } else {
+                            // لو فشل تسجيل الدخول
                             setState(() {
-                              Email = '';
-                              Password = '';
+                              email = '';
+                              password = '';
                             });
                             formKey.currentState!.reset();
                             setState(() {
@@ -102,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                         }
                       },
                       text: isLoading ? "loading .." : "Login",
-                    )
+                    ),
                   ],
                 ),
               ),

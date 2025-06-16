@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:grenco/core/models/user_model.dart';
 import 'package:grenco/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:grenco/core/widgets/custom_drawer/custom_drawer.dart';
 import 'package:grenco/screens/admin_interface/productivity_page/widgets/productivity.dart';
 import 'package:grenco/screens/admin_interface/productivity_page/widgets/productivity_card.dart';
 
 class ProductivityPage extends StatelessWidget {
-  const ProductivityPage({super.key});
+    final UserModel user;
+  const ProductivityPage({super.key,required this.user});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
-      drawer: const CustomDrawer(),
+      drawer:  CustomDrawer(user: user,),
       appBar: CustomAppBar(
         title: 'Productivity',
       ),

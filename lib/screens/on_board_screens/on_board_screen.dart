@@ -22,6 +22,8 @@ class _OnboardScreenState extends State<OnboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -56,7 +58,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                       ? TextButton(
                           onPressed: _navigateToMainScreen,
                           style: TextButton.styleFrom(
-                            foregroundColor: Colors.black, // لون النص عند الضغط
+                            foregroundColor: theme.colorScheme.onBackground,
                           ),
                           child: Text(
                             "Skip",
@@ -79,19 +81,17 @@ class _OnboardScreenState extends State<OnboardScreen> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff28CF05),
+                      backgroundColor: theme.colorScheme.primary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20), // تقليل الحشو الجانبي
-                      minimumSize:
-                          const Size(100, 50), // تحديد عرض وارتفاع الزر
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      minimumSize: const Size(100, 50),
                     ),
                     child: Text(
                       index == 2 ? "Login" : "Next",
                       style: const TextStyle(
-                        fontSize: 18, // تقليل حجم النص ليناسب الارتفاع الجديد
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),

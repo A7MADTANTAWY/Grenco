@@ -5,6 +5,8 @@ class ThirdScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context); // استخدام ألوان الثيم
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -15,7 +17,7 @@ class ThirdScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
-            color: Color(0xff28CF05),
+            color: theme.colorScheme.primary, // لون من الثيم
           ),
         ),
         Padding(
@@ -24,9 +26,9 @@ class ThirdScreen extends StatelessWidget {
             "Share the playlist you created and share it with friends and family",
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 20,
-                // fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(255, 19, 54, 33)),
+              fontSize: 20,
+              color: theme.textTheme.bodyMedium!.color, // نص من الثيم
+            ),
           ),
         ),
       ],

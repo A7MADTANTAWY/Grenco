@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:grenco/core/models/user_model.dart';
 import 'package:grenco/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:grenco/core/widgets/custom_drawer/custom_drawer.dart';
 
 class WorkingHoursPage extends StatelessWidget {
-  const WorkingHoursPage({super.key});
+  final UserModel user;
+  const WorkingHoursPage({super.key, required this.user});
 
   final double hourlyRate = 50.0; // سعر الساعة
 
@@ -15,7 +17,9 @@ class WorkingHoursPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color(0xFFF5F5F5),
-      drawer: const CustomDrawer(),
+      drawer: CustomDrawer(
+        user: user,
+      ),
       appBar: CustomAppBar(
         title: 'Hours',
       ),

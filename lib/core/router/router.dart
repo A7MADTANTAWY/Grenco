@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:grenco/core/models/user_model.dart';
 import 'package:grenco/screens/admin_interface/Number%20of%20working%20hours_page/working_hours_page.dart';
 import 'package:grenco/screens/admin_interface/add_user_page/add_user_page.dart';
 import 'package:grenco/screens/admin_interface/productivity_page/productivity_page.dart';
@@ -19,11 +20,17 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/home',
-      builder: (context, state) => HomePage(),
+      builder: (context, state) {
+        final user = state.extra as UserModel;
+        return HomePage(user: user);
+      },
     ),
     GoRoute(
       path: '/profile',
-      builder: (context, state) => ProfilePage(),
+      builder: (context, state) {
+        final user = state.extra as UserModel;
+        return ProfilePage(user: user);
+      },
     ),
     GoRoute(
       path: '/Login',
@@ -61,23 +68,38 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/video',
-      builder: (context, state) => VideoPage(),
+      builder: (context, state) {
+        final user = state.extra as UserModel;
+        return VideoPage(user: user);
+      },
     ),
     GoRoute(
       path: '/settings',
-      builder: (context, state) => SettingsPage(),
+      builder: (context, state) {
+        final user = state.extra as UserModel;
+        return SettingsPage(user: user);
+      },
     ),
     GoRoute(
       path: '/productivity',
-      builder: (context, state) => ProductivityPage(),
+      builder: (context, state) {
+        final user = state.extra as UserModel;
+        return ProductivityPage(user: user);
+      },
     ),
     GoRoute(
       path: '/workHours',
-      builder: (context, state) => WorkingHoursPage(),
+      builder: (context, state) {
+        final user = state.extra as UserModel;
+        return WorkingHoursPage(user: user);
+      },
     ),
     GoRoute(
       path: '/users',
-      builder: (context, state) => AddUserPage(),
+      builder: (context, state) {
+        final user = state.extra as UserModel;
+        return AddUserPage(user: user);
+      },
     ),
   ],
 );

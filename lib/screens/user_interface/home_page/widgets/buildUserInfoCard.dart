@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:grenco/core/models/user_model.dart';
 
 class Builduserinfocard extends StatelessWidget {
-  const Builduserinfocard({super.key});
+  final UserModel user;
+  const Builduserinfocard({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +32,11 @@ class Builduserinfocard extends StatelessWidget {
             ),
           ],
         ),
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Name: Ahmed Tantawy',
+              'Name: ${user.username}',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,

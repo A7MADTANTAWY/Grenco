@@ -5,6 +5,8 @@ class FirstScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -13,26 +15,23 @@ class FirstScreen extends StatelessWidget {
           "How to use The\nApplication",
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontSize: 30,
-              color: Color(0xff28CF05),
-              fontWeight: FontWeight.bold),
+            fontSize: 30,
+            color: theme.primaryColor,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
           child: Text(
-            "Listening to music is very comfertable without any annoying adds",
+            "Listening to music is very comfortable without any annoying ads",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20,
-              color: Color.fromARGB(255, 19, 54, 33),
-              // fontWeight: FontWeight.bold
+              color: theme.textTheme.bodyMedium?.color, // ← ياخد من الثيم
             ),
           ),
-        )
+        ),
       ],
     );
   }
 }
-
-// "No ads while \nlistening music"
-// "Listening to music is very comfertable without any annoying adds"

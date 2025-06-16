@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:grenco/core/logic/app_theming.dart';
 
 import 'firebase_options.dart';
 
@@ -21,6 +22,7 @@ class Gerenco extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: appThemeData[0],
       routerConfig: router,
       debugShowCheckedModeBanner: false,
     );

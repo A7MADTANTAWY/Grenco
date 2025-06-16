@@ -6,11 +6,15 @@ class CustomIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return AnimatedContainer(
-      duration: Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 250),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
-        color: active ? Color(0xff28CF05) : Colors.grey,
+        color: active
+            ? theme.colorScheme.primary
+            : theme.colorScheme.onSurface.withOpacity(0.4),
       ),
       width: active ? 30 : 10,
       height: 10,

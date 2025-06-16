@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:grenco/core/Auth/auth.dart';
+import 'package:grenco/core/models/user_model.dart';
 import 'package:grenco/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:grenco/core/widgets/custom_button/custom_button.dart';
 import 'package:grenco/core/widgets/custom_drawer/custom_drawer.dart';
 import 'package:grenco/core/widgets/custom_text_field/custom_text_field.dart';
 
 class AddUserPage extends StatefulWidget {
-  const AddUserPage({super.key});
+  final UserModel user;
+
+  const AddUserPage({super.key,required this.user});
 
   @override
   State<AddUserPage> createState() => _AddUserPageState();
@@ -37,7 +40,9 @@ class _AddUserPageState extends State<AddUserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
-      drawer: const CustomDrawer(),
+      drawer: CustomDrawer(
+        user: widget.user,
+      ),
       appBar: CustomAppBar(
         title: 'Sign up',
       ),
@@ -113,6 +118,7 @@ class _AddUserPageState extends State<AddUserPage> {
 
                               try {
                                 final result = await auth.register(
+                                  username: username!,
                                   email: email!,
                                   password: password!,
                                   context: context,

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:grenco/core/models/user_model.dart';
 import 'package:grenco/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:grenco/core/widgets/custom_drawer/custom_drawer.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final UserModel user;
+  const ProfilePage({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF5F5F5),
-      drawer: const CustomDrawer(),
+      drawer:  CustomDrawer(user: user,),
       appBar: CustomAppBar(
         title: 'Profile',
       ),
@@ -31,8 +33,8 @@ class ProfilePage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Ahmed Farrag Tantawy',
+                    Text(
+                      user.username,
                       style: TextStyle(
                         color: Color(0xff28CF05),
                         fontSize: 22,
@@ -41,7 +43,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'ahmed@example.com',
+                      user.email,
                       style: TextStyle(
                         color: Colors.black87,
                         fontSize: 16,
@@ -67,9 +69,9 @@ class ProfilePage extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  _buildProfileTile(Icons.post_add, 'Position', 'User'),
+                  _buildProfileTile(Icons.post_add, 'Position', user.role),
                   const Divider(color: Colors.grey, height: 20),
-                  _buildProfileTile(Icons.insert_drive_file, 'ID', '123023156'),
+                  _buildProfileTile(Icons.insert_drive_file, 'ID', user.uid),
                 ],
               ),
             ),
