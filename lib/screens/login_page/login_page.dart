@@ -73,35 +73,27 @@ class _LoginPageState extends State<LoginPage> {
                             isLoading = true;
                           });
 
-                          try {
-                            await Auth()
-                                .login(email: Email!, password: Password!);
-                            setState(() {
-                              isLoading = false;
-                            });
+                          final result = await Auth().login(
+                            email: Email!,
+                            password: Password!,
+                            context: context,
+                          );
+
+                          setState(() {
+                            isLoading = false;
+                          });
+
+                          if (result != null) {
                             context.go("/home");
-                          } catch (e) {
+                          } else {
                             setState(() {
-                              isLoading = false;
                               Email = '';
                               Password = '';
                             });
-
-                            // مسح الفورم
                             formKey.currentState!.reset();
-
                             setState(() {
                               autoValidateMode = AutovalidateMode.disabled;
                             });
-
-                            // اظهار رسالة خطأ
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Login Failed: ${e.toString()}'),
-                                backgroundColor: Colors.red,
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
                           }
                         } else {
                           setState(() {
@@ -110,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                         }
                       },
                       text: isLoading ? "loading .." : "Login",
-                    ),
+                    )
                   ],
                 ),
               ),

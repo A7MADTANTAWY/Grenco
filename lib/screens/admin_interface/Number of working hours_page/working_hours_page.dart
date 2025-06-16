@@ -32,7 +32,7 @@ class WorkingHoursPage extends StatelessWidget {
           ),
 
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 30),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [
@@ -70,7 +70,7 @@ class WorkingHoursPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Text(
                   "$workingHours Hours",
                   style: const TextStyle(

@@ -23,6 +23,8 @@ class _AddUserPageState extends State<AddUserPage> {
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? email, password, username;
 
+  bool isLoading = false;
+
   @override
   void dispose() {
     emailController.dispose();
@@ -98,27 +100,33 @@ class _AddUserPageState extends State<AddUserPage> {
                             password = value;
                           },
                         ),
-                        const SizedBox(height: 40),
+                        const SizedBox(height: 30),
                         CustomButton(
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                               formKey.currentState!.save();
-                              emailController.clear();
-                              passwordController.clear();
-                              usernameController.clear();
+
                               setState(() {
                                 autoValidateMode = AutovalidateMode.disabled;
+                                isLoading = true;
                               });
+
                               try {
-                                await auth.register(
+                                final result = await auth.register(
                                   email: email!,
                                   password: password!,
+                                  context: context,
                                 );
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text("User added successfully"),
-                                  ),
-                                );
+
+                                // فقط لو التسجيل نجح، امسح الـ TextFields
+                                if (result != null) {
+                                  emailController.clear();
+                                  passwordController.clear();
+                                  usernameController.clear();
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                }
                               } catch (e) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -132,8 +140,8 @@ class _AddUserPageState extends State<AddUserPage> {
                               });
                             }
                           },
-                          text: "Add User",
-                        ),
+                          text: isLoading ? "Loading..." : "Add User",
+                        )
                       ],
                     ),
                   ),

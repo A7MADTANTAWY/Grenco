@@ -1,0 +1,2 @@
+D:/Github/Grenco/android/app/.cxx/Debug/16i223z4/x86/CMakeFiles/edit_cache.dir
+D:/Github/Grenco/android/app/.cxx/Debug/16i223z4/x86/CMakeFiles/rebuild_cache.dir

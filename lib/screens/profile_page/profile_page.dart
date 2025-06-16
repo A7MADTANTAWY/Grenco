@@ -53,7 +53,7 @@ class ProfilePage extends StatelessWidget {
             ),
             Image.asset("assets/profile.png"),
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
@@ -74,7 +74,7 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 20,
             ),
             SizedBox(
               width: double.infinity,
