@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1048839283637",
+    "project_id": "grenco-cdde5",
+    "storage_bucket": "grenco-cdde5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048839283637:android:78f91b1a147586ceefeffc",
+        "android_client_info": {
+          "package_name": "com.example.grenco"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoQqCE2dZR4iZNDcSzjsoIY2Mq3Lhx6uM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

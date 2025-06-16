@@ -67,7 +67,7 @@ class CustomDrawer extends StatelessWidget {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          "Mobile Developer",
+                          "Hello, Ahmed!",
                           style: TextStyle(
                             color: Colors.white70,
                             fontSize: 14,

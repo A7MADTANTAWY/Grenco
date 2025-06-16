@@ -50,7 +50,7 @@ class DetailsInfo extends StatelessWidget {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      "13 m/s",
+                      "13",
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,

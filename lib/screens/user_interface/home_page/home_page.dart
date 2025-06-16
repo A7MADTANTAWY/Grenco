@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
             const Builduserinfocard(),
             const SizedBox(height: 10),
             BuildProgressCard(
-              title: 'Temperature',
+              title: 'Temperature sensor 1',
               value: 0.2,
               progressColor: Colors.red,
               onTap: () {
@@ -31,7 +31,34 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             BuildProgressCard(
-              title: 'Speed',
+              title: 'Temperature sensor 2',
+              value: 0.4,
+              progressColor: Colors.orange,
+              onTap: () {
+                context.push('/details/0.4/Temperature/orange');
+              },
+            ),
+            const SizedBox(height: 10),
+            BuildProgressCard(
+              title: 'Temperature sensor 3',
+              value: 0.5,
+              progressColor: Colors.blue,
+              onTap: () {
+                context.push('/details/0.5/Temperature/blue');
+              },
+            ),
+            const SizedBox(height: 10),
+            BuildProgressCard(
+              title: 'Temperature sensor 4',
+              value: 0.1,
+              progressColor: Colors.red,
+              onTap: () {
+                context.push('/details/0.1/Temperature/red');
+              },
+            ),
+            const SizedBox(height: 10),
+            BuildProgressCard(
+              title: 'Motor speed',
               value: 0.8,
               progressColor: const Color(0xff28CF05),
               onTap: () {

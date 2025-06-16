@@ -51,11 +51,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: 350,
-              child: Image.asset("assets/profile.png"),
-            ),
-            const SizedBox(height: 24),
+            Image.asset("assets/profile.png"),
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(

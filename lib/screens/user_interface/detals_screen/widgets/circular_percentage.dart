@@ -6,12 +6,15 @@ class CircularPercentage extends StatelessWidget {
   String degree;
   String title;
   Color color;
+  late double degreeD;
 
   CircularPercentage(
       {super.key,
       required this.degree,
       required this.title,
-      required this.color});
+      required this.color}) {
+    degreeD = double.parse(degree) * 100;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,7 @@ class CircularPercentage extends StatelessWidget {
             ),
           ),
           Text(
-            degree,
+            "${degreeD.toString()} %",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
