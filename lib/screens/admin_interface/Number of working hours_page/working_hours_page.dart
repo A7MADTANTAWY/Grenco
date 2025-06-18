@@ -16,7 +16,6 @@ class WorkingHoursPage extends StatelessWidget {
     double totalAmount = workingHours * hourlyRate;
 
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
       drawer: CustomDrawer(
         user: user,
       ),
@@ -24,25 +23,16 @@ class WorkingHoursPage extends StatelessWidget {
         title: 'Hours',
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         children: [
-          // ✅ صورة الوقت
           Center(
-            child: Image.asset(
-              "assets/time.png",
-            ),
+            child: Image.asset("assets/time.png"),
           ),
-
           Container(
             padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 30),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [
-                  Color(0xff28CF05),
-                  Color(0xff1A8902)
-                ], // تدرج لوني حديث
+                colors: [Color(0xff28CF05), Color(0xff1A8902)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -51,7 +41,7 @@ class WorkingHoursPage extends StatelessWidget {
                 BoxShadow(
                   color: Colors.black26,
                   blurRadius: 12,
-                  offset: const Offset(0, 4),
+                  offset: Offset(0, 4),
                 ),
               ],
             ),
@@ -78,7 +68,7 @@ class WorkingHoursPage extends StatelessWidget {
                 Text(
                   "$workingHours Hours",
                   style: const TextStyle(
-                    fontSize: 38, // تكبير الخط
+                    fontSize: 38,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -87,7 +77,7 @@ class WorkingHoursPage extends StatelessWidget {
                 Text(
                   "Hourly Rate: \$${hourlyRate.toStringAsFixed(2)}",
                   style: const TextStyle(
-                    fontSize: 18, // خط أصغر
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.white70,
                   ),
@@ -95,38 +85,37 @@ class WorkingHoursPage extends StatelessWidget {
               ],
             ),
           ),
-
-          const SizedBox(height: 30), // مسافة بسيطة
-
-          // ✅ Card لحساب التكلفة
+          const SizedBox(height: 30),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context)
+                  .colorScheme
+                  .surface, // ← تم تغييره ليتبع الـ Theme
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black26,
                   blurRadius: 10,
-                  offset: const Offset(0, 4),
+                  offset: Offset(0, 4),
                 ),
               ],
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.attach_money,
-                        color: Color(0xff28CF05), size: 28),
+                        color: Theme.of(context).primaryColor, size: 28),
                     SizedBox(width: 10),
                     Text(
                       "Total Payment",
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black54,
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
                       ),
                     ),
                   ],
@@ -134,16 +123,16 @@ class WorkingHoursPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 Text(
                   "\$${totalAmount.toStringAsFixed(2)}",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xff28CF05),
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 30), // مسافة بسيطة
+          const SizedBox(height: 30),
         ],
       ),
     );

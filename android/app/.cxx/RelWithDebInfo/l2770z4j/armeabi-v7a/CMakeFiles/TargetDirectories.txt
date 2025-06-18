@@ -1,0 +1,2 @@
+D:/Github/Grenco/android/app/.cxx/RelWithDebInfo/l2770z4j/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Github/Grenco/android/app/.cxx/RelWithDebInfo/l2770z4j/armeabi-v7a/CMakeFiles/rebuild_cache.dir

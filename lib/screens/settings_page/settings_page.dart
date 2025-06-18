@@ -17,6 +17,9 @@ class _SettingsPageState extends State<SettingsPage> {
   String selectedLanguage = 'ar'; // 'ar' or 'en'
 
   Widget buildLanguageTile({required String label, required String value}) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -28,20 +31,21 @@ class _SettingsPageState extends State<SettingsPage> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
           border: Border.all(
-            color: Color(0xff28CF05),
+            color: theme.primaryColor,
             width: 1.5,
           ),
           borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
+          color: colorScheme.surface,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(label,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                )),
             Checkbox(
-              activeColor: Color(0xff28CF05),
+              activeColor: theme.primaryColor,
               value: selectedLanguage == value,
               onChanged: (_) {
                 setState(() {
@@ -56,13 +60,15 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Widget buildSettingBox({required Widget child}) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        border: Border.all(color: Color(0xff28CF05), width: 1.5),
+        border: Border.all(color: Theme.of(context).primaryColor, width: 1.5),
         borderRadius: BorderRadius.circular(12),
-        color: Colors.white,
+        color: colorScheme.surface,
       ),
       child: child,
     );
@@ -70,35 +76,42 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: theme.scaffoldBackgroundColor,
       drawer: CustomDrawer(user: widget.user),
-      appBar: CustomAppBar(title: 'Settings'),
+      appBar: const CustomAppBar(title: 'Settings'),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'اختيار اللغة',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            Text(
+              'Language',
+              style: textTheme.headlineSmall
+                  ?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             buildLanguageTile(label: 'العربية', value: 'ar'),
             buildLanguageTile(label: 'English', value: 'en'),
             const SizedBox(height: 30),
-            const Text(
-              'الوضع الليلي',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            Text(
+              'DarkMode',
+              style: textTheme.headlineSmall
+                  ?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             buildSettingBox(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('الوضع الليلي'),
+                  Text('الوضع الليلي', style: textTheme.bodyMedium),
                   Switch(
-                    activeColor: const Color(0xff28CF05),
+                    thumbColor:
+                        MaterialStateProperty.all<Color>(theme.primaryColor),
+                    activeColor: theme.colorScheme.primary,
                     value: isDarkMode,
                     onChanged: (val) {
                       setState(() {

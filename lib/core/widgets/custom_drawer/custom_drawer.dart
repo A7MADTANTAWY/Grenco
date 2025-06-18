@@ -10,27 +10,33 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Drawer(
       child: Stack(
         children: [
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
             child: Container(
-              color: Colors.white.withOpacity(0.9),
+              color: theme.colorScheme.background.withOpacity(0.9),
             ),
           ),
           Column(
             children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 height: 200,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Color(0xff1E5625), Color(0xff28CF05)],
+                    colors: [
+                      Color(0xff1E5625),
+                      theme.primaryColor,
+                    ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(25),
                     bottomRight: Radius.circular(25),
                   ),
@@ -38,7 +44,7 @@ class CustomDrawer extends StatelessWidget {
                     BoxShadow(
                       color: Colors.black.withOpacity(0.15),
                       blurRadius: 8,
-                      offset: Offset(0, 4),
+                      offset: const Offset(0, 4),
                     ),
                   ],
                 ),
@@ -53,22 +59,22 @@ class CustomDrawer extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(width: 15),
+                    const SizedBox(width: 15),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           user.username,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1.1,
                           ),
                         ),
-                        SizedBox(height: 4),
-                        Text(
+                        const SizedBox(height: 4),
+                        const Text(
                           "Welcome To Grenco",
                           style: TextStyle(
                             color: Colors.white70,
@@ -80,83 +86,61 @@ class CustomDrawer extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               CustomTile(
                 icon: Icons.person_rounded,
                 title: "Profile",
-                onPressed: () {
-                  context.go('/profile', extra: user);
-                },
-                color: Colors.black,
+                onPressed: () => context.go('/profile', extra: user),
+                color: colorScheme.onSurface,
               ),
               CustomTile(
                 icon: Icons.home_rounded,
                 title: "Home",
-                onPressed: () {
-                  context.go('/home', extra: user);
-                },
-                color: Colors.black,
+                onPressed: () => context.go('/home', extra: user),
+                color: colorScheme.onSurface,
               ),
-              user.role == "admin"
-                  ? CustomTile(
-                      icon: Icons.video_collection_rounded,
-                      title: "Video",
-                      onPressed: () {
-                        context.go('/video', extra: user);
-                      },
-                      color: Colors.black,
-                    )
-                  : SizedBox(),
-              user.role == "admin"
-                  ? CustomTile(
-                      icon: Icons.av_timer_sharp,
-                      title: "productivity",
-                      onPressed: () {
-                        context.go('/productivity', extra: user);
-                      },
-                      color: Colors.black,
-                    )
-                  : SizedBox(),
-              user.role == "admin"
-                  ? CustomTile(
-                      icon: Icons.attach_money,
-                      title: "Working Hours",
-                      onPressed: () {
-                        context.go('/workHours', extra: user);
-                      },
-                      color: Colors.black,
-                    )
-                  : SizedBox(),
-              user.role == "admin"
-                  ? CustomTile(
-                      icon: Icons.verified_user_sharp,
-                      title: "Add User",
-                      onPressed: () {
-                        context.go('/users', extra: user);
-                      },
-                      color: Colors.black,
-                    )
-                  : SizedBox(),
+              if (user.role == "admin")
+                CustomTile(
+                  icon: Icons.video_collection_rounded,
+                  title: "Video",
+                  onPressed: () => context.go('/video', extra: user),
+                  color: colorScheme.onSurface,
+                ),
+              if (user.role == "admin")
+                CustomTile(
+                  icon: Icons.av_timer_sharp,
+                  title: "Productivity",
+                  onPressed: () => context.go('/productivity', extra: user),
+                  color: colorScheme.onSurface,
+                ),
+              if (user.role == "admin")
+                CustomTile(
+                  icon: Icons.attach_money,
+                  title: "Working Hours",
+                  onPressed: () => context.go('/workHours', extra: user),
+                  color: colorScheme.onSurface,
+                ),
+              if (user.role == "admin")
+                CustomTile(
+                  icon: Icons.verified_user_sharp,
+                  title: "Add User",
+                  onPressed: () => context.go('/users', extra: user),
+                  color: colorScheme.onSurface,
+                ),
               CustomTile(
                 icon: Icons.settings_rounded,
                 title: "Settings",
-                onPressed: () {
-                  context.go('/settings', extra: user);
-                },
-                color: Colors.black,
+                onPressed: () => context.go('/settings', extra: user),
+                color: colorScheme.onSurface,
               ),
               const Spacer(),
               CustomTile(
                 icon: Icons.logout,
                 title: "Log Out",
-                onPressed: () {
-                  context.go('/login');
-                },
-                color: Colors.red,
+                onPressed: () => context.go('/login'),
+                color: colorScheme.error,
               ),
-              SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
             ],
           ),
         ],

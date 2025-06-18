@@ -10,12 +10,13 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
-      drawer:  CustomDrawer(user: user,),
-      appBar: CustomAppBar(
-        title: 'Profile',
-      ),
+      backgroundColor: theme.scaffoldBackgroundColor,
+      drawer: CustomDrawer(user: user),
+      appBar: const CustomAppBar(title: 'Profile'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ListView(
@@ -25,7 +26,7 @@ class ProfilePage extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundColor: Color(0xFFF5F5F5),
+                  backgroundColor: theme.scaffoldBackgroundColor,
                   backgroundImage: const AssetImage(
                       'assets/Grenco_logo-removebg-preview.png'),
                 ),
@@ -36,7 +37,7 @@ class ProfilePage extends StatelessWidget {
                     Text(
                       user.username,
                       style: TextStyle(
-                        color: Color(0xff28CF05),
+                        color: theme.primaryColor,
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
@@ -45,7 +46,7 @@ class ProfilePage extends StatelessWidget {
                     Text(
                       user.email,
                       style: TextStyle(
-                        color: Colors.black87,
+                        color: theme.textTheme.bodyMedium?.color,
                         fontSize: 16,
                       ),
                     ),
@@ -57,7 +58,7 @@ class ProfilePage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: colorScheme.surface,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
@@ -69,15 +70,15 @@ class ProfilePage extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  _buildProfileTile(Icons.post_add, 'Position', user.role),
-                  const Divider(color: Colors.grey, height: 20),
-                  _buildProfileTile(Icons.insert_drive_file, 'ID', user.uid),
+                  _buildProfileTile(
+                      context, Icons.post_add, 'Position', user.role),
+                  const Divider(height: 20),
+                  _buildProfileTile(
+                      context, Icons.insert_drive_file, 'ID', user.uid),
                 ],
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: InkWell(
@@ -86,7 +87,7 @@ class ProfilePage extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   decoration: BoxDecoration(
-                    color: const Color(0xff28CF05),
+                    color: theme.primaryColor,
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
@@ -97,12 +98,12 @@ class ProfilePage extends StatelessWidget {
                     ],
                   ),
                   alignment: Alignment.center,
-                  child: const Text(
+                  child: Text(
                     'Logout',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
                   ),
                 ),
@@ -115,21 +116,21 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileTile(IconData icon, String title, String subtitle) {
+  Widget _buildProfileTile(
+      BuildContext context, IconData icon, String title, String subtitle) {
+    final colorScheme = Theme.of(context).primaryColor;
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-      ),
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: const Color(0xff28CF05).withOpacity(0.15),
+              color: colorScheme.withOpacity(0.15),
               shape: BoxShape.circle,
             ),
-            child: Icon(icon, color: const Color(0xff28CF05), size: 24),
+            child: Icon(icon, color: colorScheme, size: 24),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -138,10 +139,10 @@ class ProfilePage extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black87,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -149,7 +150,7 @@ class ProfilePage extends StatelessWidget {
                   subtitle,
                   style: TextStyle(
                     fontSize: 14,
-                    color: Colors.grey.shade700,
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
                   ),
                 ),
               ],

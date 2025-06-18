@@ -7,6 +7,8 @@ class Builduserinfocard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).primaryColor;
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -14,10 +16,10 @@ class Builduserinfocard extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
+          gradient: LinearGradient(
             colors: [
-              Color(0xff28CF05),
-              Color(0xff28CF05),
+              colorScheme,
+              colorScheme,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -25,7 +27,7 @@ class Builduserinfocard extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: Color(0xff28CF05).withOpacity(0.1),
+              color: colorScheme.withOpacity(0.1),
               blurRadius: 12,
               spreadRadius: 2,
               offset: const Offset(0, 6),
@@ -37,27 +39,24 @@ class Builduserinfocard extends StatelessWidget {
           children: [
             Text(
               'Name: ${user.username}',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-              ),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               'Machine',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white70,
-              ),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Colors.white70,
+                  ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               'ID: 123456',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white70,
-              ),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Colors.white70,
+                  ),
             ),
           ],
         ),

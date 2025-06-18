@@ -9,7 +9,7 @@ import 'package:grenco/core/widgets/custom_text_field/custom_text_field.dart';
 class AddUserPage extends StatefulWidget {
   final UserModel user;
 
-  const AddUserPage({super.key,required this.user});
+  const AddUserPage({super.key, required this.user});
 
   @override
   State<AddUserPage> createState() => _AddUserPageState();
@@ -39,7 +39,6 @@ class _AddUserPageState extends State<AddUserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
       drawer: CustomDrawer(
         user: widget.user,
       ),
@@ -56,11 +55,13 @@ class _AddUserPageState extends State<AddUserPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Transform.translate(
-                offset: const Offset(0, -20), // تحريك العنصر للأعلى بمقدار 20
+                offset: const Offset(0, -20),
                 child: Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context)
+                        .colorScheme
+                        .surface, // ← بدل الأبيض المباشر
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
@@ -124,7 +125,6 @@ class _AddUserPageState extends State<AddUserPage> {
                                   context: context,
                                 );
 
-                                // فقط لو التسجيل نجح، امسح الـ TextFields
                                 if (result != null) {
                                   emailController.clear();
                                   passwordController.clear();

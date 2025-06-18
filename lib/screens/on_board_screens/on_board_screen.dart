@@ -25,6 +25,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -54,21 +55,28 @@ class _OnboardScreenState extends State<OnboardScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  index <= 1
-                      ? TextButton(
-                          onPressed: _navigateToMainScreen,
-                          style: TextButton.styleFrom(
-                            foregroundColor: theme.colorScheme.onBackground,
-                          ),
-                          child: Text(
-                            "Skip",
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                  // ✅ زر Skip يظهر بس لما يكون في الصفحات الأولى
+                  AnimatedOpacity(
+                    opacity: index <= 1 ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 200),
+                    child: index <= 1
+                        ? TextButton(
+                            onPressed: _navigateToMainScreen,
+                            style: TextButton.styleFrom(
+                              foregroundColor: theme.colorScheme.onBackground,
                             ),
-                          ),
-                        )
-                      : const SizedBox(),
+                            child: const Text(
+                              "Skip",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        : const SizedBox(),
+                  ),
+
+                  // ✅ زر Next / Login
                   ElevatedButton(
                     onPressed: () {
                       if (index == 2) {
@@ -81,7 +89,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: theme.colorScheme.primary,
+                      backgroundColor: theme.primaryColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),

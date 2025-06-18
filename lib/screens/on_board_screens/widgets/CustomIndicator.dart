@@ -13,7 +13,7 @@ class CustomIndicator extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
         color: active
-            ? theme.colorScheme.primary
+            ? theme.primaryColor
             : theme.colorScheme.onSurface.withOpacity(0.4),
       ),
       width: active ? 30 : 10,

@@ -22,7 +22,7 @@ class Gerenco extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: appThemeData[0],
+      theme: appThemeData[AppTheme.light],
       routerConfig: router,
       debugShowCheckedModeBanner: false,
     );

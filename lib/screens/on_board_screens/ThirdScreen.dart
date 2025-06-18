@@ -17,7 +17,7 @@ class ThirdScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
-            color: theme.colorScheme.primary, // لون من الثيم
+            color: theme.primaryColor, // لون من الثيم
           ),
         ),
         Padding(

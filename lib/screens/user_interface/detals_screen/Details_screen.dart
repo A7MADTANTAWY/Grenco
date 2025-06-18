@@ -9,30 +9,34 @@ class DetailsScreen extends StatelessWidget {
   String title;
   Color color;
 
-  DetailsScreen(
-      {super.key,
-      required this.degree,
-      required this.title,
-      required this.color});
+  DetailsScreen({
+    super.key,
+    required this.degree,
+    required this.title,
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
+      backgroundColor: colorScheme.background,
       appBar: AppBar(
-        backgroundColor: Color(0xFFF5F5F5),
+        backgroundColor: colorScheme.background,
         toolbarHeight: 70,
         leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: IconButton(
-            icon: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: const Icon(
+            icon: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(
                 Icons.arrow_back_ios,
                 size: 30,
-                color: Color(0xff28CF05),
               ),
             ),
+            color: Theme.of(context).primaryColor,
             onPressed: () {
               Navigator.pop(context);
             },
@@ -40,13 +44,12 @@ class DetailsScreen extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: TextStyle(
-            fontSize: 28,
+          style: textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.bold,
-            color: Color(0xff28CF05),
+            color: Theme.of(context).primaryColor,
           ),
         ),
-        actions: [
+        actions: const [
           Logo(),
         ],
       ),
@@ -54,29 +57,18 @@ class DetailsScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: ListView(
           children: [
-            SizedBox(
-              height: 40,
-            ),
+            const SizedBox(height: 40),
             CircularPercentage(
               degree: degree,
               title: title,
-              color: color,
+              color:
+                  color, // دا لو جاي من خارج التيم خليه كده، أو غيّره لو محتاج
             ),
-            DetailsInfo(
-              title: title,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            DetailsInfo(
-              title: title,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            DetailsInfo(
-              title: title,
-            ),
+            DetailsInfo(title: title),
+            const SizedBox(height: 10),
+            DetailsInfo(title: title),
+            const SizedBox(height: 10),
+            DetailsInfo(title: title),
           ],
         ),
       ),

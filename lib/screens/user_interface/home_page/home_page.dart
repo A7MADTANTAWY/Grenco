@@ -13,7 +13,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
       drawer: CustomDrawer(
         user: user,
       ),
@@ -23,12 +22,10 @@ class HomePage extends StatelessWidget {
         child: ListView(
           children: [
             const SizedBox(height: 10),
-            Builduserinfocard(
-              user: user,
-            ),
+            Builduserinfocard(user: user),
             const SizedBox(height: 10),
             BuildProgressCard(
-              title: 'Temperature sensor 1',
+              title: 'Temperature sensor 1',
               value: 0.2,
               progressColor: Colors.red,
               onTap: () {
@@ -37,7 +34,7 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             BuildProgressCard(
-              title: 'Temperature sensor 2',
+              title: 'Temperature sensor 2',
               value: 0.4,
               progressColor: Colors.orange,
               onTap: () {
@@ -46,7 +43,7 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             BuildProgressCard(
-              title: 'Temperature sensor 3',
+              title: 'Temperature sensor 3',
               value: 0.5,
               progressColor: Colors.blue,
               onTap: () {
@@ -55,7 +52,7 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             BuildProgressCard(
-              title: 'Temperature sensor 4',
+              title: 'Temperature sensor 4',
               value: 0.1,
               progressColor: Colors.red,
               onTap: () {

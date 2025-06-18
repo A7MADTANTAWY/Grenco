@@ -8,23 +8,26 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.primaryColor;
+
     return AppBar(
       elevation: 0,
       scrolledUnderElevation: 0,
-      iconTheme: const IconThemeData(
-        color: Color(0xff28CF05),
+      iconTheme: IconThemeData(
+        color: colorScheme,
         size: 30,
       ),
       toolbarHeight: 70,
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: theme.scaffoldBackgroundColor,
       title: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Text(
           title,
-          style: const TextStyle(
-            fontSize: 28,
+          style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.bold,
-            color: Color(0xff28CF05),
+            color: colorScheme,
+            fontSize: 28,
           ),
         ),
       ),

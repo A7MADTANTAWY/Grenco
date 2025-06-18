@@ -8,12 +8,15 @@ class DetailsInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: colorScheme.surface,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
@@ -31,10 +34,11 @@ class DetailsInfo extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.green.withOpacity(0.15),
+                    color: Theme.of(context).primaryColor.withOpacity(0.15),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.speed, size: 30, color: Colors.green),
+                  child: Icon(Icons.speed,
+                      size: 30, color: Theme.of(context).primaryColor),
                 ),
                 const SizedBox(width: 12),
                 Column(
@@ -42,19 +46,17 @@ class DetailsInfo extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: TextStyle(
-                        fontSize: 16,
+                      style: textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: Colors.black54,
+                        color: colorScheme.onSurface.withOpacity(0.7),
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
-                      "13",
-                      style: TextStyle(
-                        fontSize: 22,
+                      "13", // 👈 هتخليها متغيرة لو عايز
+                      style: textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Colors.green,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ],
@@ -63,9 +65,8 @@ class DetailsInfo extends StatelessWidget {
             ),
             Text(
               "5 min ago",
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
+              style: textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withOpacity(0.6),
               ),
             ),
           ],

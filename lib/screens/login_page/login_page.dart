@@ -27,21 +27,22 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context); // استخدام الثيم
+
     return Scaffold(
-      resizeToAvoidBottomInset:
-          false, // يمنع تغيير حجم الواجهة عند ظهور الكيبورد
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            child: Image.asset("assets/top_left.png", height: 150),
-          ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: Image.asset("assets/bottom_right.png", height: 150),
-          ),
+          // Positioned(
+          //   top: 0,
+          //   left: 0,
+          //   child: Image.asset("assets/top_left.png", height: 150),
+          // ),
+          // Positioned(
+          //   bottom: 0,
+          //   right: 0,
+          //   child: Image.asset("assets/bottom_right.png", height: 150),
+          // ),
           Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -52,8 +53,44 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(
-                        width: 300, child: Image.asset("assets/grenco.png")),
-                    SizedBox(height: 100),
+                      width: 300,
+                      child: Image.asset("assets/grenco.png"),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "For ",
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                            color: Theme.of(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.color, // ✅ استخدام اللون الأساسي من الثيم
+
+                            fontSize: 32,
+                          ),
+                        ),
+                        Text(
+                          "plastic",
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                            color: theme.primaryColor,
+                            fontSize: 32,
+                          ),
+                        ),
+                        Text(
+                          " solutions",
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                            color: Theme.of(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.color, // ✅ استخدام اللون الأساسي من الثيم,
+
+                            fontSize: 32,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 180),
                     CustomTextField(
                       fieldType: FieldType.email,
                       iconData: Icons.email,
@@ -62,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                         email = value;
                       },
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     CustomTextField(
                       fieldType: FieldType.password,
                       iconData: Icons.lock,
@@ -71,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                         password = value;
                       },
                     ),
-                    SizedBox(height: 60),
+                    const SizedBox(height: 60),
                     CustomButton(
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
@@ -92,10 +129,8 @@ class _LoginPageState extends State<LoginPage> {
                           });
 
                           if (result != null) {
-                            // جلب بيانات المستخدم
                             final userData = await auth.getCurrentUserData();
-                            final uid =
-                                result.user?.uid; // <-- هنا بنجيب الـ uid
+                            final uid = result.user?.uid;
 
                             if (userData != null && uid != null) {
                               final userModel = UserModel(
@@ -108,7 +143,6 @@ class _LoginPageState extends State<LoginPage> {
                               context.go('/home', extra: userModel);
                             }
                           } else {
-                            // لو فشل تسجيل الدخول
                             setState(() {
                               email = '';
                               password = '';
@@ -124,7 +158,9 @@ class _LoginPageState extends State<LoginPage> {
                           });
                         }
                       },
-                      text: isLoading ? "loading .." : "Login",
+                      text: isLoading ? "Loading..." : "Login",
+                      // لو حابب تستخدم لون الزر من الثيم:
+                      backgroundColor: theme.colorScheme.primary,
                     ),
                   ],
                 ),

@@ -1,0 +1,2 @@
+D:/Github/Grenco/android/app/.cxx/RelWithDebInfo/l2770z4j/x86/CMakeFiles/edit_cache.dir
+D:/Github/Grenco/android/app/.cxx/RelWithDebInfo/l2770z4j/x86/CMakeFiles/rebuild_cache.dir

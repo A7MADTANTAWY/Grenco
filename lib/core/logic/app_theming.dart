@@ -5,7 +5,14 @@ enum AppTheme { light, dark }
 
 final appThemeData = {
   AppTheme.light: ThemeData(
-    primaryColor: const Color(0xFF6200EE),
+    primaryColor: const Color(0xff28CF05),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: const Color(0xff28CF05),
+      brightness: Brightness.light,
+    ).copyWith(
+      surface: const Color(0xffffffff), // سطح محايد وفاتح بدون اصفرار
+      background: const Color(0xFFF5F5F5),
+    ),
     scaffoldBackgroundColor: const Color(0xFFF5F5F5),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFFF5F5F5),
@@ -21,17 +28,23 @@ final appThemeData = {
       bodyLarge: TextStyle(color: Colors.black, fontSize: 16),
       bodyMedium: TextStyle(color: Colors.black54, fontSize: 14),
     ),
-    switchTheme: SwitchThemeData(
+    switchTheme: const SwitchThemeData(
       thumbColor: MaterialStatePropertyAll(Color(0xff28CF05)),
       trackColor: MaterialStatePropertyAll(Color(0xff28CF05)),
     ),
   ),
-
-  // تقدر تضيف الثيم الداكن هنا لو حبيت
   AppTheme.dark: ThemeData.dark().copyWith(
-    scaffoldBackgroundColor: Colors.black,
+    primaryColor: const Color(0xff28CF05),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: const Color(0xff28CF05),
+      brightness: Brightness.dark,
+    ).copyWith(
+      background: const Color(0xFF222222), // خلفية أغمق
+      surface: const Color(0xFF2A2A2A), // سطح أغمق بس لسه في فرق عن الخلفية
+    ),
+    scaffoldBackgroundColor: const Color(0xFF222222),
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF222222),
       elevation: 0,
       iconTheme: IconThemeData(color: Colors.white),
       titleTextStyle: TextStyle(

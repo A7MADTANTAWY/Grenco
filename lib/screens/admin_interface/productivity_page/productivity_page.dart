@@ -6,14 +6,15 @@ import 'package:grenco/screens/admin_interface/productivity_page/widgets/product
 import 'package:grenco/screens/admin_interface/productivity_page/widgets/productivity_card.dart';
 
 class ProductivityPage extends StatelessWidget {
-    final UserModel user;
-  const ProductivityPage({super.key,required this.user});
+  final UserModel user;
+  const ProductivityPage({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
-      drawer:  CustomDrawer(user: user,),
+      drawer: CustomDrawer(
+        user: user,
+      ),
       appBar: CustomAppBar(
         title: 'Productivity',
       ),
@@ -26,7 +27,7 @@ class ProductivityPage extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(

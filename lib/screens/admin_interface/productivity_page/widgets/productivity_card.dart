@@ -17,7 +17,9 @@ class ProductivityCard extends StatelessWidget {
       padding: const EdgeInsets.all(14),
       margin: const EdgeInsets.symmetric(vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context)
+            .colorScheme
+            .surface, // ✅ تم استبداله باللون من الثيم
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Colors.grey.shade300),
         boxShadow: [
@@ -34,10 +36,13 @@ class ProductivityCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Colors.black54,
+              color: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.color, // ✅ استخدام اللون الأساسي من الثيم
             ),
           ),
           Text(

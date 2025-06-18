@@ -17,7 +17,7 @@ class SecondScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
-            color: theme.colorScheme.primary, // استخدام لون الثيم الأساسي
+            color: theme.primaryColor, // استخدام لون الثيم الأساسي
           ),
         ),
         Padding(
